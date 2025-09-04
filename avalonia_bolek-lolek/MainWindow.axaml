@@ -1,0 +1,28 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="avalonia_bolek_lolek.MainWindow"
+        Title="avalonia_bolek_lolek">
+        <Grid ColumnDefinitions="*" RowDefinitions="150,200,200">
+                <TextBlock Text="Lista Zadań"/>
+                <Grid Grid.Row="1" ColumnDefinitions="* *" RowDefinitions="*">
+                        <TextBlock Text="Wpisz zadanie:"/>
+                        <TextBox Grid.Column="1"/>
+                </Grid>
+                <Grid Grid.Row="2" ColumnDefinitions="* *" RowDefinitions="*">
+                        <TextBlock Text="Wybierz postać:"/>
+                        <Grid Grid.Column="1" ColumnDefinitions="* *">
+                                <ComboBox>
+                                        <ComboBoxItem Content="Bolek"/>
+                                        <ComboBoxItem Content="Lolek"/>
+                                </ComboBox>
+                                <Image Grid.Column="1"
+                                       Source="avares://avalonia_bolek-lolek/assets/bolek.png"
+                                       >
+                                </Image>
+                        </Grid>
+                </Grid>
+        </Grid>
+</Window>
