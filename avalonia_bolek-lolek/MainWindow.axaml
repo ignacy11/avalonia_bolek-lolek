@@ -5,24 +5,96 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="avalonia_bolek_lolek.MainWindow"
         Title="avalonia_bolek_lolek">
-        <Grid ColumnDefinitions="*" RowDefinitions="150,200,200">
-                <TextBlock Text="Lista Zadań"/>
+        
+        <Window.Styles>
+                <Style Selector="Border.mainContainer">
+                        <Setter Property="Background" Value="#11111b"/>
+                        <Setter Property="CornerRadius" Value="8"/>
+                        <Setter Property="Margin" Value="20"/>
+                        <Setter Property="Padding" Value="20"/>
+                </Style>
+        
+                <Style Selector="TextBlock.header">
+                        <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="Margin" Value="0 0 0 20"/>
+                        <Setter Property="TextAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+        
+                <Style Selector="Border.formSection">
+                        <Setter Property="Background" Value="#1e1e2e"/>
+                        <Setter Property="BorderBrush" Value="#dedede"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Padding" Value="10"/>
+                        <Setter Property="Margin" Value="0"/>
+                </Style>
+        </Window.Styles>
+        
+        <Grid ColumnDefinitions="*" RowDefinitions="100,125,150,400" Classes="mainContainer">
+                
+                <TextBlock Text="Lista zadań Bolka i Lolka" Classes="header"/>
+                
                 <Grid Grid.Row="1" ColumnDefinitions="* *" RowDefinitions="*">
-                        <TextBlock Text="Wpisz zadanie:"/>
-                        <TextBox Grid.Column="1"/>
+                        
+                        <Border Classes="formSection">
+                                <Grid ColumnDefinitions="* * *" RowDefinitions="*">
+                                        <TextBlock Text="Wpisz zadanie:" />
+                                        <TextBox Grid.Column="1" />
+                                        <Button Grid.Column="2">Dodaj zadanie</Button>
+                                </Grid>
+                        </Border>
+                        <Border Grid.Column="1" Classes="formSection">
+                                <Grid ColumnDefinitions="* * *" RowDefinitions="*">
+                                        <TextBlock Text="Wybierz postać:" />
+                                        <ComboBox Grid.Column="1" Width="120">
+                                                <ComboBoxItem Content="Bolek" />
+                                                <ComboBoxItem Content="Lolek" />
+                                        </ComboBox>
+                                        <Image Grid.Column="2"
+                                               Source="./assets/bolek.png"><!-- bolek jest wyższy -->
+                                        </Image>
+                                </Grid>
+                        </Border>
                 </Grid>
                 <Grid Grid.Row="2" ColumnDefinitions="* *" RowDefinitions="*">
-                        <TextBlock Text="Wybierz postać:"/>
-                        <Grid Grid.Column="1" ColumnDefinitions="* *">
-                                <ComboBox>
-                                        <ComboBoxItem Content="Bolek"/>
-                                        <ComboBoxItem Content="Lolek"/>
-                                </ComboBox>
-                                <Image Grid.Column="1"
-                                       Source="avares://avalonia_bolek-lolek/assets/bolek.png"
-                                       >
-                                </Image>
-                        </Grid>
+                        <Border Classes="formSection">
+                                <Grid ColumnDefinitions="* *" RowDefinitions="* *">
+                                        <TextBlock Text="Wybierz priorytet"></TextBlock>
+                                        <StackPanel Grid.Column="1" Grid.Row="0">
+                                                <RadioButton GroupName="priorityLevel" Content="Niski"/>
+                                                <RadioButton GroupName="priorityLevel" Content="Średni"/>
+                                                <RadioButton GroupName="priorityLevel" Content="Wysoki"/>
+                                        </StackPanel> 
+                                </Grid>
+                        </Border>
+                        <Border Grid.Column="1" Classes="formSection">
+                                <Grid ColumnDefinitions="* *" RowDefinitions="* *">
+                                        <TextBlock Text="Dodatkowe opcje"></TextBlock>
+                                        <StackPanel Grid.Column="1" Grid.Row="0">
+                                                <CheckBox>Na dworze</CheckBox>
+                                                <CheckBox>Potrzebny sprzęt</CheckBox>
+                                                <CheckBox>Z udziałem innych kolegów</CheckBox>
+                                        </StackPanel>
+                                </Grid>
+                        </Border>
                 </Grid>
+                
+                <Grid Grid.Row="3" ColumnDefinitions="* *">
+                        <Border Classes="formSection">
+                                <Grid RowDefinitions="*" ColumnDefinitions="* *">
+                                        <Calendar SelectionMode="SingleDate"/>
+                                        <Button Grid.Column="1">Dodaj zadanie</Button>
+                                </Grid>
+                        </Border>
+                
+                        <Border Grid.Column="1" Classes="formSection">
+                                <Grid ColumnDefinitions="* * *" RowDefinitions="*">
+                                        <ListBox x:Name="TaskList"/>
+                                        <Button Grid.Column="1">Usuń wybrane z listy</Button>
+                                </Grid>
+                        </Border>
+                </Grid>
+                
         </Grid>
 </Window>
