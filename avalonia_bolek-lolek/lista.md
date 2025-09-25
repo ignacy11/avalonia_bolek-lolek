@@ -10,7 +10,7 @@ Drugie okno – kalendarz przygód: lista zadań przypisana do wybranego dnia.
 ## Funkcjonalności
 
 1. **Dodawanie zadania**
-   ○ Użytkownik wpisuje nazwę zadania w polu **TextBox** (np. _„zbudować domek na drzewie”_ ).
+   ○ Użytkownik wpisuje nazwę zadania w polu **TextBo+x** (np. _„zbudować domek na drzewie”_ ).
    ○ Kliknięcie przycisku **„Dodaj”** dodaje zadanie do listy.
 2. **Przypisanie bohatera**
    ○ Z listy rozwijanej ( **ComboBox** ) użytkownik wybiera, kto ma wykonać zadanie: **Bolek** czy **Lolek**.

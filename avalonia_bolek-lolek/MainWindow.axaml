@@ -4,11 +4,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="avalonia_bolek_lolek.MainWindow"
-        Title="avalonia_bolek_lolek">
+        Title="avalonia_bolek_lolek"
+        Background="#11111b"
+        >
         
         <Window.Styles>
                 <Style Selector="Border.mainContainer">
-                        <Setter Property="Background" Value="#11111b"/>
+                        <Setter Property="Background" Value="#181825"/>
                         <Setter Property="CornerRadius" Value="8"/>
                         <Setter Property="Margin" Value="20"/>
                         <Setter Property="Padding" Value="20"/>
@@ -31,7 +33,7 @@
                 </Style>
         </Window.Styles>
         
-        <Grid ColumnDefinitions="*" RowDefinitions="100,125,150,400" Classes="mainContainer">
+        <Grid ColumnDefinitions="*" RowDefinitions="100,125,150,400,75" Classes="mainContainer">
                 
                 <TextBlock Text="Lista zadań Bolka i Lolka" Classes="header"/>
                 
@@ -40,19 +42,22 @@
                         <Border Classes="formSection">
                                 <Grid ColumnDefinitions="* * *" RowDefinitions="*">
                                         <TextBlock Text="Wpisz zadanie:" />
-                                        <TextBox Grid.Column="1" />
+                                        <TextBox Grid.Column="1" x:Name="TaskName"/>
                                         <Button Grid.Column="2">Dodaj zadanie</Button>
                                 </Grid>
                         </Border>
                         <Border Grid.Column="1" Classes="formSection">
                                 <Grid ColumnDefinitions="* * *" RowDefinitions="*">
                                         <TextBlock Text="Wybierz postać:" />
-                                        <ComboBox Grid.Column="1" Width="120">
+                                        <ComboBox Grid.Column="1" Width="120" x:Name="SelectedCharacter" SelectionChanged="SelectedCharacter_OnSelectionChanged">
                                                 <ComboBoxItem Content="Bolek" />
                                                 <ComboBoxItem Content="Lolek" />
                                         </ComboBox>
                                         <Image Grid.Column="2"
-                                               Source="./assets/bolek.png"><!-- bolek jest wyższy -->
+                                               Source="./assets/bolek.png"
+                                               x:Name="CharacterImage"
+                                               >
+                                                <!-- bolek jest wyższy -->
                                         </Image>
                                 </Grid>
                         </Border>
@@ -62,9 +67,9 @@
                                 <Grid ColumnDefinitions="* *" RowDefinitions="* *">
                                         <TextBlock Text="Wybierz priorytet"></TextBlock>
                                         <StackPanel Grid.Column="1" Grid.Row="0">
-                                                <RadioButton GroupName="priorityLevel" Content="Niski"/>
-                                                <RadioButton GroupName="priorityLevel" Content="Średni"/>
-                                                <RadioButton GroupName="priorityLevel" Content="Wysoki"/>
+                                                <RadioButton GroupName="priorityLevel" Content="Niski" x:Name="PriorityLevelLowRadioButton"/>
+                                                <RadioButton GroupName="priorityLevel" Content="Średni" x:Name="PriorityLevelMediumRadioButton"/>
+                                                <RadioButton GroupName="priorityLevel" Content="Wysoki" x:Name="PriorityLevelHighRadioButton"/>
                                         </StackPanel> 
                                 </Grid>
                         </Border>
@@ -72,9 +77,9 @@
                                 <Grid ColumnDefinitions="* *" RowDefinitions="* *">
                                         <TextBlock Text="Dodatkowe opcje"></TextBlock>
                                         <StackPanel Grid.Column="1" Grid.Row="0">
-                                                <CheckBox>Na dworze</CheckBox>
-                                                <CheckBox>Potrzebny sprzęt</CheckBox>
-                                                <CheckBox>Z udziałem innych kolegów</CheckBox>
+                                                <CheckBox x:Name="OutsideCheckBox">Na dworze</CheckBox>
+                                                <CheckBox x:Name="StuffNeededCheckBox">Potrzebny sprzęt</CheckBox>
+                                                <CheckBox x:Name="WithOthersCheckBox">Z udziałem innych kolegów</CheckBox>
                                         </StackPanel>
                                 </Grid>
                         </Border>
@@ -83,8 +88,8 @@
                 <Grid Grid.Row="3" ColumnDefinitions="* *">
                         <Border Classes="formSection">
                                 <Grid RowDefinitions="*" ColumnDefinitions="* *">
-                                        <Calendar SelectionMode="SingleDate"/>
-                                        <Button Grid.Column="1">Dodaj zadanie</Button>
+                                        <Calendar SelectionMode="SingleDate" x:Name="Calendar"/>
+                                        <Button Grid.Column="1" Click="AddTaskToList">Dodaj zadanie</Button>
                                 </Grid>
                         </Border>
                 
@@ -95,6 +100,10 @@
                                 </Grid>
                         </Border>
                 </Grid>
-                
+                <StackPanel Grid.Row="4">
+                        <Border HorizontalAlignment="Center" Classes="formSection">
+                                <Button Click="SubmitData" Content="Wyślij dane"/>
+                        </Border>
+                </StackPanel>
         </Grid>
 </Window>
